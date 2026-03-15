@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Log</title>
+</head>
+<body>
+    <h1>Food Log</h1>
+
+    <form method="GET">
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" value="{{ selected_date }}">
+        <button type="submit">View</button>
+    </form>
+
+    <p>Total Calories: {{ total_calories }}</p>
+
+    <a href="{% url 'add_food_entry' %}">Add Food Entry</a>
+
+    <table border="1">
+        <tr>
+            <th>Food Name</th>
+            <th>Meal Type</th>
+            <th>Calories</th>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+
+        {% for entry in food_entries %}
+        <tr>
+            <td>{{ entry.food_name }}</td>
+            <td>{{ entry.meal_type }}</td>
+            <td>{{ entry.calories }}</td>
+            <td>{{ entry.date }}</td>
+            <td>
+                <form method="POST" action="{% url 'delete_food_entry' entry.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No food entries found.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

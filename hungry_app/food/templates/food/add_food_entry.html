@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Food Entry</title>
+</head>
+<body>
+    <h1>Add Food Entry</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <a href="{% url 'food_log' %}">Back to Food Log</a>
+</body>
+</html>
