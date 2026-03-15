@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Food Entry</title>
+</head>
+<body>
+    <h1>Delete Food Entry</h1>
+
+    <p>Are you sure you want to delete "{{ food_entry.food_name }}"?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes</button>
+    </form>
+
+    <a href="{% url 'food_log' %}">Cancel</a>
+</body>
+</html>
