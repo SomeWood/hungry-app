@@ -3,8 +3,8 @@ import datetime
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from .models import FoodEntry
-from .forms import FoodEntryForm
+from .models import ExerciseEntry
+from .forms import ExerciseEntryForm
 
 @login_required
 def exercise_log(request):
