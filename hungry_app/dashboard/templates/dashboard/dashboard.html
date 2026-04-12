@@ -3,4 +3,12 @@
 {% block content %}
 <h2>Dashboard</h2>
 <p>Welcome, {{ user.username }}!</p>
+
+<h2>Net Calories for the day:</h2>
+<form method="GET">
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" value="{{ selected_date }}">
+        <button type="submit">View</button>
+</form>
+<h3>{{ total_calories }}</h3>
 {% endblock %}
