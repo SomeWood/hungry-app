@@ -1,4 +1,49 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Exercise Log</h1>
+
+<form method="GET">
+    <label for="date">Select Date:</label>
+    <input type="date" name="date" value="{{ selected_date }}">
+    <button type="submit">View</button>
+</form>
+
+<p>Total Calories Burned: {{ total_calories }}</p>
+
+<a href="{% url 'add_exercise_entry' %}">Add Exercise Entry</a>
+
+<table border="1">
+    <tr>
+        <th>Exercise Name</th>
+        <th>Calories</th>
+        <th>Duration</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for entry in exercise_entries %}
+    <tr>
+        <td>{{ entry.exercise_name }}</td>
+        <td>{{ entry.calories }}</td>
+        <td>{{ entry.duration }}</td>
+        <td>{{ entry.date }}</td>
+        <td>
+            <form method="POST" action="{% url 'delete_exercise_entry' entry.id %}">
+                {% csrf_token %}
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5">No exercise entries found.</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Exercise Log</title>
@@ -45,4 +90,4 @@
         {% endfor %}
     </table>
 </body>
-</html>
+</html> -->

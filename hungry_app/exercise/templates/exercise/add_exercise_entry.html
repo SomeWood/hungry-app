@@ -1,4 +1,18 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add Exercise Entry</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<a href="{% url 'exercise_log' %}">Back to Exercise Log</a>
+{% endblock %}
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Add Exercise Entry</title>
@@ -14,4 +28,4 @@
 
     <a href="{% url 'exercise_log' %}">Back to Exercise Log</a>
 </body>
-</html>
+</html> -->

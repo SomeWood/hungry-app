@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Delete Weight Entry</h2>
+<p>Are you sure you want to delete the entry for <strong>{{ entry.date }}</strong> ({{ entry.weight }} kg)?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+    <a href="{% url 'weight_log' %}">Cancel</a>
+</form>
+{% endblock %}

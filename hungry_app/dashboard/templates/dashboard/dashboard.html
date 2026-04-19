@@ -4,11 +4,69 @@
 <h2>Dashboard</h2>
 <p>Welcome, {{ user.username }}!</p>
 
-<h2>Net Calories for the day:</h2>
 <form method="GET">
-        <label for="date">Select Date:</label>
-        <input type="date" name="date" value="{{ selected_date }}">
-        <button type="submit">View</button>
+    <label for="date">Select Date:</label>
+    <input type="date" name="date" value="{{ selected_date }}">
+    <button type="submit">View</button>
 </form>
-<h3>{{ total_calories }}</h3>
+
+<hr>
+
+<h3>Daily Calories — {{ selected_date }}</h3>
+<p><strong>Calories consumed:</strong> {{ total_food_calories }} kcal</p>
+<p><strong>Calories burned (exercise):</strong> {{ total_exercise_calories }} kcal</p>
+<p><strong>Net calories:</strong> {{ net_calories }} kcal</p>
+
+{% if tdee %}
+    <p><strong>Your TDEE:</strong> {{ tdee }} kcal</p>
+    <p><strong>Calorie balance vs TDEE:</strong>
+        {% if calorie_balance > 0 %}
+            +{{ calorie_balance }} kcal (surplus)
+        {% elif calorie_balance < 0 %}
+            {{ calorie_balance }} kcal (deficit)
+        {% else %}
+            0 kcal (at goal)
+        {% endif %}
+    </p>
+{% else %}
+    <p><em>Complete your profile and log your weight to see your TDEE.</em></p>
+{% endif %}
+
+<hr>
+
+<h3>Latest Weight</h3>
+{% if latest_weight %}
+    <p>{{ latest_weight.weight }} kg (logged on {{ latest_weight.date }})</p>
+{% else %}
+    <p>No weight entry yet. <a href="{% url 'add_weight_entry' %}">Add one</a></p>
+{% endif %}
+
+<hr>
+
+<h3>Today's Food Log</h3>
+{% if food_entries %}
+    <ul>
+        {% for entry in food_entries %}
+        <li>{{ entry.food_name }} ({{ entry.meal_type }}) — {{ entry.calories }} kcal</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No food logged for this date.</p>
+{% endif %}
+<a href="{% url 'add_food_entry' %}">Add Food Entry</a>
+
+<hr>
+
+<h3>Today's Exercise Log</h3>
+{% if exercise_entries %}
+    <ul>
+        {% for entry in exercise_entries %}
+        <li>{{ entry.exercise_name }} — {{ entry.duration }} min, {{ entry.calories }} kcal burned</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No exercise logged for this date.</p>
+{% endif %}
+<a href="{% url 'add_exercise_entry' %}">Add Exercise Entry</a>
+
 {% endblock %}

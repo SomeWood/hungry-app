@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Profile</h2>
+
+<h3>Your Info</h3>
+<p><strong>Username:</strong> {{ user.username }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Age:</strong> {% if age %}{{ age }} years old{% else %}Not set{% endif %}</p>
+<p><strong>Sex:</strong> {{ profile.sex|default:"Not set" }}</p>
+<p><strong>Height:</strong> {% if profile.height %}{{ profile.height }} cm{% else %}Not set{% endif %}</p>
+<p><strong>Activity Level:</strong> {{ profile.activity_level|default:"Not set" }}</p>
+
+<hr>
+
+<h3>Edit Profile</h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+    <a href="{% url 'dashboard' %}">Cancel</a>
+</form>
+{% endblock %}
