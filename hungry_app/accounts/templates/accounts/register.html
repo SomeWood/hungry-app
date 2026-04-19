@@ -1,13 +1,85 @@
 {% extends "base.html" %}
 
+{% block body_class %}register-page{% endblock %}
+{% block navbar %}{% endblock %}
+
 {% block content %}
-<h2>Register</h2>
+<div class="register-container">
 
-<form method="post">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    <button type="submit">Register</button>
-</form>
+    <div class="login-egg">🍳</div>
+    <h1 class="login-title">Hungry?</h1>
+    <p class="login-subtitle">Create your account</p>
 
+    <form method="post" style="width: 100%;">
+        {% csrf_token %}
+
+        <div class="register-card">
+            <h3>Account Info</h3>
+
+            <div class="register-form-group">
+                <label for="id_username">Username</label>
+                {{ user_form.username }}
+            </div>
+            <div class="register-form-group">
+                <label for="id_email">Email</label>
+                {{ user_form.email }}
+            </div>
+            <div class="register-form-row">
+                <div class="register-form-group">
+                    <label for="id_password1">Password</label>
+                    {{ user_form.password1 }}
+                </div>
+                <div class="register-form-group">
+                    <label for="id_password2">Confirm</label>
+                    {{ user_form.password2 }}
+                </div>
+            </div>
+        </div>
+
+        <div class="register-card" style="margin-top: 12px;">
+            <h3>Profile Info</h3>
+
+            <div class="register-form-row">
+                <div class="register-form-group">
+                    <label for="id_birthdate">Birthdate</label>
+                    {{ profile_form.birthdate }}
+                </div>
+                <div class="register-form-group">
+                    <label for="id_sex">Sex</label>
+                    {{ profile_form.sex }}
+                </div>
+            </div>
+            <div class="register-form-row">
+                <div class="register-form-group">
+                    <label for="id_height">Height (cm)</label>
+                    {{ profile_form.height }}
+                </div>
+                <div class="register-form-group">
+                    <label for="id_activity_level">Activity Level</label>
+                    {{ profile_form.activity_level }}
+                </div>
+            </div>
+        </div>
+
+        {% if user_form.errors or profile_form.errors %}
+        <div class="register-errors" style="margin-top: 12px;">
+            {% for field in user_form %}
+                {% for error in field.errors %}
+                    <ul><li>{{ field.label }}: {{ error }}</li></ul>
+                {% endfor %}
+            {% endfor %}
+            {% for field in profile_form %}
+                {% for error in field.errors %}
+                    <ul><li>{{ field.label }}: {{ error }}</li></ul>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <button type="submit" class="btn-register" style="margin-top: 16px;">Create Account</button>
+    </form>
+
+    <p class="register-login-link">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+
+</div>
 {% endblock %}
