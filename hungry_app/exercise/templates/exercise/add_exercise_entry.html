@@ -1,31 +1,32 @@
 {% extends "base.html" %}
 
+{% block body_class %}main-app{% endblock %}
+
 {% block content %}
-<h1>Add Exercise Entry</h1>
+<div class="add-entry-container">
+    <div class="add-entry-modal">
+        <h2>Add Exercise Entry</h2>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-</form>
+        <form method="POST">
+            {% csrf_token %}
+            
+            {% for field in form %}
+                {% if field.name == 'exercise_name' %}
+                    <input type="text" name="{{ field.name }}" placeholder="Exercise Name" required>
+                {% elif field.name == 'duration' %}
+                    <input type="number" name="{{ field.name }}" placeholder="Duration (minutes)" required>
+                {% elif field.name == 'calories' %}
+                    <input type="number" name="{{ field.name }}" placeholder="Calories Burned" required>
+                {% elif field.name == 'date' %}
+                    <input type="date" name="{{ field.name }}" value="{% now 'Y-m-d' %}" required>
+                {% endif %}
+            {% endfor %}
 
-<a href="{% url 'exercise_log' %}">Back to Exercise Log</a>
+            <div class="form-buttons">
+                <button type="submit">Save</button>
+                <a href="{% url 'exercise_log' %}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
-
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>Add Exercise Entry</title>
-</head>
-<body>
-    <h1>Add Exercise Entry</h1>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
-
-    <a href="{% url 'exercise_log' %}">Back to Exercise Log</a>
-</body>
-</html> -->

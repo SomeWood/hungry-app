@@ -314,3 +314,406 @@ body.register-page {
 .register-login-link a {
     text-decoration: underline;
 }
+
+/* =====================
+   Main App Pages (Dashboard, Food, Exercise, Weight)
+   ===================== */
+body.main-app {
+    background-color: #F28C1E;
+    min-height: 100vh;
+}
+
+/* Override nav for main app */
+body.main-app nav {
+    background-color: #F28C1E;
+    border-radius: 16px;
+    margin: 16px;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow: hidden;
+}
+
+body.main-app nav a,
+body.main-app nav button {
+    flex: 1;
+    padding: 14px 12px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    border-right: 2px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+body.main-app nav a:last-child,
+body.main-app nav button:last-child,
+body.main-app nav form:last-child button {
+    border-right: none;
+}
+
+body.main-app nav a:hover,
+body.main-app nav button:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+body.main-app nav .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-right: 2px solid rgba(255,255,255,0.3);
+}
+
+body.main-app nav .nav-logo img,
+body.main-app nav .nav-logo .logo-egg {
+    font-size: 24px;
+}
+
+body.main-app nav .nav-logo span {
+    font-size: 1.1rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+body.main-app nav form {
+    flex: 1;
+    display: flex;
+}
+
+body.main-app nav form button {
+    width: 100%;
+}
+
+/* =====================
+   Dashboard
+   ===================== */
+.dashboard-container {
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.dashboard-card {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dashboard-card h3 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #F28C1E;
+    margin-bottom: 4px;
+}
+
+.dashboard-card p {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    line-height: 1.4;
+}
+
+.dashboard-card .btn-action {
+    margin-top: auto;
+    padding: 10px 16px;
+    background-color: #F28C1E;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.dashboard-card .btn-action:hover {
+    opacity: 0.9;
+}
+
+.dashboard-summary {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 20px;
+    min-height: 120px;
+}
+
+.dashboard-summary h3 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #F28C1E;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+/* =====================
+   Log Pages (Food, Exercise)
+   ===================== */
+.log-container {
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.log-header {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.log-header h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #F28C1E;
+}
+
+.log-header .btn-add-entry {
+    padding: 10px 20px;
+    background-color: #FFFAED;
+    color: #333;
+    border: 2px solid #F28C1E;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.log-header .btn-add-entry:hover {
+    background-color: #F28C1E;
+    color: #fff;
+}
+
+.log-date-selector {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 12px 24px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.log-date-selector label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #333;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.log-date-selector input[type="date"] {
+    padding: 6px 12px;
+    border: 2px solid #F28C1E;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-right: 8px;
+}
+
+.log-date-selector button {
+    display: none;
+}
+
+.log-table-wrapper {
+    background-color: #F28C1E;
+    border-radius: 12px;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.log-table thead {
+    background-color: #FFFAED;
+}
+
+.log-table thead th {
+    padding: 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #333;
+    text-align: left;
+    border-bottom: 2px solid #F28C1E;
+}
+
+.log-table tbody tr {
+    background-color: #F28C1E;
+    border-bottom: 2px solid #FFFAED;
+}
+
+.log-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.log-table tbody td {
+    padding: 14px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.log-table tbody td:last-child {
+    text-align: center;
+}
+
+.log-table tbody td button {
+    padding: 6px 14px;
+    background-color: #fff;
+    color: #F28C1E;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.log-table tbody td button:hover {
+    opacity: 0.9;
+}
+
+.log-table tbody tr.empty-row td {
+    text-align: center;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* =====================
+   Add Entry Forms
+   ===================== */
+.add-entry-container {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px);
+}
+
+.add-entry-modal {
+    background-color: #FFFAED;
+    border-radius: 16px;
+    padding: 28px 32px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.add-entry-modal h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #F28C1E;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.add-entry-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-entry-modal label {
+    display: none;
+}
+
+.add-entry-modal input,
+.add-entry-modal select {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #F5C89C;
+    font-size: 0.85rem;
+    color: #666;
+    outline: none;
+}
+
+.add-entry-modal input:focus,
+.add-entry-modal select:focus {
+    background-color: #F5B878;
+}
+
+.add-entry-modal input::placeholder {
+    color: #999;
+    font-weight: 500;
+}
+
+.add-entry-modal .form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.add-entry-modal button[type="submit"],
+.add-entry-modal .btn-cancel {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.add-entry-modal button[type="submit"] {
+    background-color: #D4E89E;
+    color: #333;
+}
+
+.add-entry-modal button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+.add-entry-modal .btn-cancel {
+    background-color: #A6A081;
+    color: #fff;
+}
+
+.add-entry-modal .btn-cancel:hover {
+    opacity: 0.9;
+}
