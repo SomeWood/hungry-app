@@ -1,23 +1,52 @@
 {% extends "base.html" %}
 
+{% block body_class %}main-app{% endblock %}
+
 {% block content %}
-<h2>Profile</h2>
+<div class="profile-container">
+    <div class="profile-grid">
+        <div class="profile-view-card">
+            <h3>Profile</h3>
+            <div class="profile-field">Height: {% if profile.height %}{{ profile.height }} cm{% else %}Not set{% endif %}</div>
+            <div class="profile-field">Weight: {% if latest_weight %}{{ latest_weight.weight }} kg{% else %}Not set{% endif %}</div>
+            <div class="profile-field">Goal Weight: Not set</div>
+            <div class="profile-field">Activity Level: {{ profile.activity_level|default:"Not set" }}</div>
+        </div>
 
-<h3>Your Info</h3>
-<p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Age:</strong> {% if age %}{{ age }} years old{% else %}Not set{% endif %}</p>
-<p><strong>Sex:</strong> {{ profile.sex|default:"Not set" }}</p>
-<p><strong>Height:</strong> {% if profile.height %}{{ profile.height }} cm{% else %}Not set{% endif %}</p>
-<p><strong>Activity Level:</strong> {{ profile.activity_level|default:"Not set" }}</p>
+        <div class="profile-edit-card">
+            <h3>Profile Edit</h3>
+            <form method="POST">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    {% if field.name == 'height' %}
+                        <input type="number" step="0.1" name="{{ field.name }}" placeholder="Height (cm)" value="{{ profile.height|default:'' }}">
+                    {% elif field.name == 'birthdate' %}
+                        <input type="date" name="{{ field.name }}" placeholder="Birthdate" value="{{ profile.birthdate|date:'Y-m-d'|default:'' }}">
+                    {% elif field.name == 'sex' %}
+                        <select name="{{ field.name }}">
+                            <option value="">Sex</option>
+                            <option value="Male" {% if profile.sex == 'Male' %}selected{% endif %}>Male</option>
+                            <option value="Female" {% if profile.sex == 'Female' %}selected{% endif %}>Female</option>
+                        </select>
+                    {% elif field.name == 'activity_level' %}
+                        <select name="{{ field.name }}">
+                            <option value="">Activity Level</option>
+                            <option value="Sedentary" {% if profile.activity_level == 'Sedentary' %}selected{% endif %}>Sedentary</option>
+                            <option value="Light" {% if profile.activity_level == 'Light' %}selected{% endif %}>Light Exercise</option>
+                            <option value="Moderate" {% if profile.activity_level == 'Moderate' %}selected{% endif %}>Moderate Exercise</option>
+                            <option value="Active" {% if profile.activity_level == 'Active' %}selected{% endif %}>Active</option>
+                            <option value="Athlete" {% if profile.activity_level == 'Athlete' %}selected{% endif %}>Athlete</option>
+                        </select>
+                    {% endif %}
+                {% endfor %}
 
-<hr>
-
-<h3>Edit Profile</h3>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
-    <a href="{% url 'dashboard' %}">Cancel</a>
-</form>
+                <div class="form-buttons">
+                    <button type="submit">Save</button>
+                    <a href="{% url 'dashboard' %}" class="btn-cancel">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

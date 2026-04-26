@@ -10,10 +10,9 @@
     </div>
 
     <div class="log-date-selector">
+        <label for="date">Date Selector</label>
         <form method="GET" id="dateForm">
-            <label for="date">Date Selector</label>
-            <span style="font-size: 0.85rem; font-weight: 700;">[ &lt; ] {{ selected_date|date:"F d, Y" }} [ &gt; ]</span>
-            <input type="date" name="date" value="{{ selected_date|date:'Y-m-d' }}" onchange="this.form.submit()" style="display:none;">
+            <input type="date" name="date" id="date" value="{{ selected_date|date:'Y-m-d' }}" onchange="this.form.submit()">
         </form>
     </div>
 

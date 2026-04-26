@@ -5,6 +5,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserRegisterForm, ProfileForm, ProfileEditForm
+from weight.models import WeightEntry
 
 
 def register(request):
@@ -47,6 +48,9 @@ def profile_view(request):
             (today.month, today.day) < (profile.birthdate.month, profile.birthdate.day)
         )
 
+    # Get latest weight
+    latest_weight = WeightEntry.objects.filter(user=request.user).first()
+
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, instance=profile)
         if form.is_valid():
@@ -59,5 +63,6 @@ def profile_view(request):
         'profile': profile,
         'age': age,
         'form': form,
+        'latest_weight': latest_weight,
     }
     return render(request, 'accounts/profile.html', context)

@@ -717,3 +717,226 @@ body.main-app nav form button {
 .add-entry-modal .btn-cancel:hover {
     opacity: 0.9;
 }
+
+/* =====================
+   Weight Tracker Page
+   ===================== */
+.weight-container {
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.weight-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.weight-info-bar {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #333;
+    text-align: center;
+}
+
+.weight-table-wrapper {
+    background-color: #F28C1E;
+    border-radius: 12px;
+    padding: 2px;
+    overflow: hidden;
+}
+
+.weight-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.weight-table thead {
+    background-color: #FFFAED;
+}
+
+.weight-table thead th {
+    padding: 14px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #333;
+    text-align: center;
+    border-bottom: 2px solid #F28C1E;
+}
+
+.weight-table tbody tr {
+    background-color: #F28C1E;
+    border-bottom: 2px solid #FFFAED;
+}
+
+.weight-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.weight-table tbody td {
+    padding: 16px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+}
+
+.weight-table tbody td button {
+    padding: 6px 14px;
+    background-color: #fff;
+    color: #F28C1E;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.weight-table tbody td button:hover {
+    opacity: 0.9;
+}
+
+.weight-table tbody tr.empty-row td {
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* =====================
+   Profile Page
+   ===================== */
+.profile-container {
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.profile-view-card {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.profile-view-card h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #F28C1E;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.profile-view-card .profile-field {
+    background-color: #F5C89C;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    text-align: center;
+}
+
+.profile-edit-card {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.profile-edit-card h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    color: #F28C1E;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.profile-edit-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-edit-card label {
+    display: none;
+}
+
+.profile-edit-card input,
+.profile-edit-card select {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #F5C89C;
+    font-size: 0.85rem;
+    color: #666;
+    outline: none;
+}
+
+.profile-edit-card input:focus,
+.profile-edit-card select:focus {
+    background-color: #F5B878;
+}
+
+.profile-edit-card input::placeholder {
+    color: #999;
+    font-weight: 500;
+}
+
+.profile-edit-card .form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.profile-edit-card button[type="submit"],
+.profile-edit-card .btn-cancel {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.profile-edit-card button[type="submit"] {
+    background-color: #D4E89E;
+    color: #333;
+}
+
+.profile-edit-card button[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+.profile-edit-card .btn-cancel {
+    background-color: #A6A081;
+    color: #fff;
+}
+
+.profile-edit-card .btn-cancel:hover {
+    opacity: 0.9;
+}

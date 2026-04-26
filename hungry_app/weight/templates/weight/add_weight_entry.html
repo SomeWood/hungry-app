@@ -1,12 +1,23 @@
 {% extends "base.html" %}
 
-{% block content %}
-<h2>Add Weight Entry</h2>
+{% block body_class %}main-app{% endblock %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save</button>
-    <a href="{% url 'weight_log' %}">Cancel</a>
-</form>
+{% block content %}
+<div class="add-entry-container">
+    <div class="add-entry-modal">
+        <h2>Add Weight Entry</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <input type="number" step="0.1" name="weight" placeholder="Weight" required>
+            <input type="date" name="date" value="{% now 'Y-m-d' %}" required>
+
+            <div class="form-buttons">
+                <button type="submit">Save</button>
+                <a href="{% url 'weight_log' %}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
