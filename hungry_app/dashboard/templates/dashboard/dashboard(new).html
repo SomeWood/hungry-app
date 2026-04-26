@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block body_class %}main-app{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="dashboard-cards">
+        <div class="dashboard-card">
+            <h3>Daily Calories</h3>
+            <p><strong>Today's Calories:</strong><br>{{ total_food_calories }} kcal</p>
+            <a href="{% url 'add_food_entry' %}" class="btn-action">Add Food</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Exercise Activity</h3>
+            <p><strong>Exercise Logged:</strong><br>
+                {% if exercise_entries %}
+                    {{ exercise_entries|length }} activities
+                {% else %}
+                    No activity recorded
+                {% endif %}
+            </p>
+            <a href="{% url 'add_exercise_entry' %}" class="btn-action">Add Exercise</a>
+        </div>
+
+        <div class="dashboard-card">
+            <h3>Latest Weight</h3>
+            <p><strong>Current Weight:</strong><br>
+                {% if latest_weight %}
+                    {{ latest_weight.weight }} kg
+                {% else %}
+                    No weight entry yet
+                {% endif %}
+            </p>
+            <a href="{% url 'add_weight_entry' %}" class="btn-action">Add Weight</a>
+        </div>
+    </div>
+
+   
+</div>
+{% endblock %}

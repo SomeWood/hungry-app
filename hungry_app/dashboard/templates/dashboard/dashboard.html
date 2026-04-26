@@ -4,38 +4,132 @@
 
 {% block content %}
 <div class="dashboard-container">
+    <!-- Welcome and Date Selector -->
+    <div class="log-date-selector" style="margin-bottom: 20px;">
+        <h2>Welcome, {{ user.username }}!</h2>
+        <form method="GET">
+            <label for="date">Select Date to View</label>
+            <input type="date" name="date" value="{{ selected_date|date:'Y-m-d' }}" onchange="this.form.submit()">
+        </form>
+    </div>
+
+    <!-- Stats Cards Row -->
     <div class="dashboard-cards">
         <div class="dashboard-card">
-            <h3>Daily Calories</h3>
-            <p><strong>Today's Calories:</strong><br>{{ total_food_calories }} kcal</p>
+            <h3>Calories Consumed</h3>
+            <p class="stat-number">{{ total_food_calories|default:0 }}</p>
+            <p class="stat-label">kcal</p>
             <a href="{% url 'add_food_entry' %}" class="btn-action">Add Food</a>
         </div>
 
         <div class="dashboard-card">
-            <h3>Exercise Activity</h3>
-            <p><strong>Exercise Logged:</strong><br>
-                {% if exercise_entries %}
-                    {{ exercise_entries|length }} activities
-                {% else %}
-                    No activity recorded
-                {% endif %}
-            </p>
+            <h3>Calories Burned</h3>
+            <p class="stat-number">{{ total_exercise_calories|default:0 }}</p>
+            <p class="stat-label">kcal</p>
             <a href="{% url 'add_exercise_entry' %}" class="btn-action">Add Exercise</a>
         </div>
 
         <div class="dashboard-card">
-            <h3>Latest Weight</h3>
-            <p><strong>Current Weight:</strong><br>
-                {% if latest_weight %}
-                    {{ latest_weight.weight }} kg
-                {% else %}
-                    No weight entry yet
-                {% endif %}
+            <h3>Net Calories</h3>
+            <p class="stat-number {% if net_calories > 0 %}stat-positive{% elif net_calories < 0 %}stat-negative{% else %}stat-neutral{% endif %}">
+                {{ net_calories|default:0 }}
             </p>
-            <a href="{% url 'add_weight_entry' %}" class="btn-action">Add Weight</a>
+            <p class="stat-label">kcal</p>
         </div>
     </div>
 
-   
+    <!-- TDEE Section -->
+    {% if tdee %}
+    <div class="dashboard-summary tdee-card">
+        <h3>Daily Energy Target</h3>
+        <div class="tdee-stats">
+            <div class="tdee-stat">
+                <span class="tdee-label">Your TDEE:</span>
+                <span class="tdee-value">{{ tdee }} kcal</span>
+            </div>
+            <div class="tdee-stat">
+                <span class="tdee-label">Calorie Balance:</span>
+                <span class="tdee-value {% if calorie_balance > 0 %}stat-positive{% elif calorie_balance < 0 %}stat-negative{% else %}stat-neutral{% endif %}">
+                    {% if calorie_balance > 0 %}
+                        +{{ calorie_balance }} kcal (surplus)
+                    {% elif calorie_balance < 0 %}
+                        {{ calorie_balance }} kcal (deficit)
+                    {% else %}
+                        0 kcal (at goal)
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+        <p class="tdee-note">Based on your profile and latest weight entry</p>
+    </div>
+    {% else %}
+    <div class="dashboard-summary tdee-card tdee-incomplete">
+        <h3>Daily Energy Target</h3>
+        <p class="tdee-message">Complete your profile and log your weight to see your TDEE.</p>
+        <div class="tdee-actions">
+            <a href="{% url 'profile_view' %}" class="btn-action small">Update Profile</a>
+            <a href="{% url 'add_weight_entry' %}" class="btn-action small">Add Weight</a>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Weight and Logs Section -->
+    <div class="dashboard-bottom">
+        <!-- Latest Weight Card -->
+        <div class="dashboard-card weight-card">
+            <h3>Latest Weight</h3>
+            {% if latest_weight %}
+                <p class="stat-number">{{ latest_weight.weight }}</p>
+                <p class="stat-label">kg (logged on {{ latest_weight.date|date:"M d, Y" }})</p>
+            {% else %}
+                <p class="empty-message">No weight entry yet.</p>
+            {% endif %}
+            <a href="{% url 'add_weight_entry' %}" class="btn-action">Add Weight</a>
+        </div>
+
+        <!-- Recent Food Log -->
+        <div class="dashboard-card log-preview">
+            <h3>Food Log for {{ selected_date|date:"M d, Y" }}</h3>
+            {% if food_entries %}
+                <ul class="log-preview-list">
+                    {% for entry in food_entries %}
+                    <li>
+                        <span class="log-item-name">{{ entry.food_name }}</span>
+                        <span class="log-item-meal">{{ entry.meal_type }}</span>
+                        <span class="log-item-calories">{{ entry.calories }} kcal</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="log-total">
+                    <strong>Total: {{ total_food_calories }} kcal</strong>
+                </div>
+            {% else %}
+                <p class="empty-message">No food logged for this date.</p>
+            {% endif %}
+            <a href="{% url 'add_food_entry' %}" class="btn-action small">+ Add Food Entry</a>
+        </div>
+
+        <!-- Recent Exercise Log -->
+        <div class="dashboard-card log-preview">
+            <h3>Exercise Log for {{ selected_date|date:"M d, Y" }}</h3>
+            {% if exercise_entries %}
+                <ul class="log-preview-list">
+                    {% for entry in exercise_entries %}
+                    <li>
+                        <span class="log-item-name">{{ entry.exercise_name }}</span>
+                        <span class="log-item-duration">{{ entry.duration }} min</span>
+                        <span class="log-item-calories">{{ entry.calories }} kcal</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="log-total">
+                    <strong>Total Burned: {{ total_exercise_calories }} kcal</strong>
+                </div>
+            {% else %}
+                <p class="empty-message">No exercise logged for this date.</p>
+            {% endif %}
+            <a href="{% url 'add_exercise_entry' %}" class="btn-action small">+ Add Exercise Entry</a>
+        </div>
+    </div>
 </div>
 {% endblock %}

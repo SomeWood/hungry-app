@@ -940,3 +940,300 @@ body.main-app nav form button {
 .profile-edit-card .btn-cancel:hover {
     opacity: 0.9;
 }
+
+/* =====================
+   Dashboard Additional Styles
+   ===================== */
+
+/* Stats Numbers */
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #F28C1E;
+    line-height: 1.2;
+    margin: 8px 0;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.stat-positive {
+    color: #D4E89E !important;
+}
+
+.stat-negative {
+    color: #E8A098 !important;
+}
+
+.stat-neutral {
+    color: #F5C89C !important;
+}
+
+/* TDEE Card */
+.tdee-card {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.tdee-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.tdee-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.tdee-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.tdee-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #333;
+}
+
+.tdee-note {
+    font-size: 0.7rem;
+    color: #999;
+    margin-top: 12px;
+}
+
+.tdee-incomplete {
+    text-align: center;
+}
+
+.tdee-message {
+    font-size: 0.85rem;
+    color: #F28C1E;
+    font-weight: 600;
+    margin: 12px 0;
+}
+
+.tdee-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.btn-action.small {
+    padding: 6px 14px;
+    font-size: 0.65rem;
+    background-color: #F28C1E;
+    color: #fff;
+    border-radius: 20px;
+}
+
+/* Dashboard Bottom Grid */
+.dashboard-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-bottom {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Weight Card */
+.weight-card {
+    text-align: center;
+}
+
+.weight-card .stat-number {
+    font-size: 2rem;
+}
+
+.empty-message {
+    color: #aaa;
+    font-style: italic;
+    font-size: 0.8rem;
+    margin: 12px 0;
+}
+
+/* Log Preview Card */
+.log-preview {
+    display: flex;
+    flex-direction: column;
+}
+
+.log-preview-list {
+    list-style: none;
+    margin: 12px 0;
+    flex-grow: 1;
+}
+
+.log-preview-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.8rem;
+}
+
+.log-preview-list li:last-child {
+    border-bottom: none;
+}
+
+.log-item-name {
+    font-weight: 600;
+    color: #333;
+    flex: 2;
+}
+
+.log-item-meal,
+.log-item-duration {
+    color: #888;
+    font-size: 0.7rem;
+    flex: 1;
+    text-align: center;
+}
+
+.log-item-calories {
+    font-weight: 700;
+    color: #F28C1E;
+    flex: 1;
+    text-align: right;
+}
+
+.log-total {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #333;
+    text-align: right;
+}
+
+.btn-action.small {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Date Selector styling */
+.log-date-selector {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 20px 24px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.log-date-selector h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #F28C1E;
+    margin-bottom: 16px;
+}
+
+.log-date-selector label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #333;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.log-date-selector input[type="date"] {
+    padding: 8px 16px;
+    border: 2px solid #F28C1E;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background-color: #fff;
+}
+
+/* Dashboard Cards Grid */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dashboard-card {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dashboard-card h3 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #F28C1E;
+    margin-bottom: 4px;
+}
+
+.dashboard-card .btn-action {
+    margin-top: auto;
+    padding: 10px 16px;
+    background-color: #F28C1E;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.dashboard-card .btn-action:hover {
+    opacity: 0.9;
+}
+
+/* Dashboard Summary */
+.dashboard-summary {
+    background-color: #FFFAED;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.dashboard-summary h3 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #F28C1E;
+    text-align: center;
+    margin-bottom: 12px;
+}
